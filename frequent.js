@@ -1,15 +1,22 @@
-function getFrequentNum(arr) {
-    const sortAryy = arr.slice().sort()
-    let result = [];
+function findMostFrequentElement(arr) {
+    const frequencyMap = {};
 
-    for (let i = 0; i < sortAryy.length - 1; i++) {
-        if (sortAryy[i + 1] === sortAryy[i]) {
-            result.push(sortAryy[i])
+    arr.forEach((num) => {
+        frequencyMap[num] = (frequencyMap[num] || 0) + 1;
+    });
+
+    let mostFrequentElement;
+    let maxFrequency = 0;
+
+    for (const num in frequencyMap) {
+        if (frequencyMap[num] > maxFrequency) {
+            maxFrequency = frequencyMap[num];
+            mostFrequentElement = num;
         }
     }
-    return result;
+
+    return mostFrequentElement;
 }
 
-const arr = [3, 5, 2, 5, 3, 3, 1, 4, 5]
-const frequentNumber = getFrequentNum(arr)
-console.log(frequentNumber)
+const array = [3, 5, 2, 5, 3, 3, 1, 4, 5];
+console.log(findMostFrequentElement(array));
